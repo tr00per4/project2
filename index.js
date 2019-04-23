@@ -22,6 +22,14 @@ app.route('/api/students').get((req, res) => {
     })
 })
 
+app.route('/api/students/:n_z').get((req, res) => {
+    let n_z = req.params["n_z"]
+    pool.query('Select * from students where n_z = ?' + n_z,
+    (err, result, fields) =>{
+        if(err) throw err
+        res.send(result)
+    })
+})
 
 app.listen(8080, () => {
        console.log('Server started')
